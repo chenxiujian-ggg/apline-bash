@@ -1,7 +1,7 @@
-name: Build alpine+bash and export tar
+name: Build python:3.11-slim+bash and export tar
 
 on:
-  workflow_dispatch:        # 手动触发
+  workflow_dispatch:          # 手动触发
 
 jobs:
   build:
@@ -16,17 +16,17 @@ jobs:
       - name: Build image
         run: |
           docker buildx build \
-            --tag alpine-bash:latest \
+            --tag python:3.11-slim-bash \
             --load \
             .
 
       - name: Export tar
         run: |
-          docker save alpine-bash:latest | gzip > alpine-bash.tar.gz
+          docker save python:3.11-slim-bash | gzip > python311-slim-bash.tar.gz
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: alpine-bash-tar
-          path: alpine-bash.tar.gz
-          retention-days: 7          # 7 天后自动清理，可改
+          name: python311-slim-bash-tar
+          path: python311-slim-bash.tar.gz
+          retention-days: 7
