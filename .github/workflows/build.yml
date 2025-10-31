@@ -22,11 +22,11 @@ jobs:
 
       - name: Export tar
         run: |
-          docker save alpine-bash:latest | gzip > alpine-bash.tar.gz
+          docker save alpine-bash:latest | gzip > py311-bash.tar.gz
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: alpine-bash-tar
-          path: alpine-bash.tar.gz
+          name: py311-bash-tar
+          path: py311-bash.tar.gz
           retention-days: 7          # 7 天后自动清理，可改
