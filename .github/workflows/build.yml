@@ -16,17 +16,17 @@ jobs:
       - name: Build image
         run: |
           docker buildx build \
-            --tag alpine-bash:latest \
+            --tag jdk11-bash:latest \
             --load \
             .
 
       - name: Export tar
         run: |
-          docker save alpine-bash:latest | gzip > py313-bash.tar.gz
+          docker save jdk11-bash:latest | gzip > jdk11-bash.tar.gz
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: py313-bash-tar
-          path: py313-bash.tar.gz
+          name: jdk11-bash-tar
+          path: jdk11-bash.tar.gz
           retention-days: 7          # 7 天后自动清理，可改
